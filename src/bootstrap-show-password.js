@@ -4,7 +4,7 @@
  * version: 1.2.1
  */
 
-let bootstrapVersion = 4
+let bootstrapVersion = 3
 try {
   const rawVersion = $.fn.dropdown.Constructor.VERSION
 
@@ -78,9 +78,6 @@ class Password {
       inputClass = 'input-group-append'
     }
 
-    // Create the text, icon and assign
-    this.$element.wrap(`<div class="input-group${sprintf(' input-group-%s', this.options.size)}" />`)
-
     this.$text = $('<input type="text" />')[placementFuc](this.$element)
       .attr('class', this.$element.attr('class'))
       .attr('style', this.$element.attr('style'))
@@ -99,7 +96,7 @@ class Password {
       ${this.options.eyeClassPositionInside ? this.options.eyeOpenClass : ''}
       </i>`,
       Constants.html.inputGroups[1]
-    ].join(''))[placementFuc](this.$text).css('cursor', 'pointer')
+    ].join('')).appendTo(this.$element.parent()).css('cursor', 'pointer')
 
     // events
     this.$text.off('keyup').on('keyup', $.proxy(function () {
